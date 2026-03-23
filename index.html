@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Nosso Céu ✨</title>
+
+<style>
+
+html, body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Segoe UI', sans-serif;
+background:radial-gradient(circle at bottom,#020111,#000814,#000);
+color:white;
+text-align:center;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+}
+
+#page2{display:none}
+
+
+.intro{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+}
+
+.title{
+font-size:28px;
+font-weight:300;
+letter-spacing:2px;
+animation:fadeIn 2s ease;
+}
+
+.subtitle{
+margin-top:10px;
+font-size:14px;
+opacity:0.7;
+animation:fadeIn 3s ease;
+}
+
+.glow-orb{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:220px;
+height:220px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(255,255,255,0.25), transparent);
+filter:blur(25px);
+animation:pulse 4s infinite;
+z-index:-1;
+}
+
+@keyframes pulse{
+0%{opacity:0.5}
+50%{opacity:1}
+100%{opacity:0.5}
+}
+
+
+.magic-btn{
+margin-top:30px;
+padding:18px 40px;
+border-radius:50px;
+border:1px solid white;
+background:transparent;
+color:white;
+font-size:18px;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+.magic-btn:hover{
+background:white;
+color:black;
+}
+
+.magic-btn::before{
+content:"";
+position:absolute;
+left:-100%;
+top:0;
+width:100%;
+height:100%;
+background:linear-gradient(120deg, transparent, rgba(255,255,255,0.7), transparent);
+transition:0.6s;
+}
+
+.magic-btn:hover::before{
+left:100%;
+}
+
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:blink 2s infinite;
+}
+
+@keyframes blink{
+0%{opacity:0.3}
+50%{opacity:1}
+100%{opacity:0.3}
+}
+
+
+.particle{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:explode 1s linear forwards;
+}
+
+@keyframes explode{
+from{opacity:1; transform:translate(0,0)}
+to{opacity:0; transform:translate(var(--x), var(--y))}
+}
+
+
+.moon{
+position:absolute;
+left:40px;
+top:40px;
+width:180px;
+height:180px;
+border-radius:50%;
+background:radial-gradient(circle,#fff,#ddd,#aaa);
+box-shadow:0 0 60px white,0 0 120px white;
+animation:pulse 4s infinite;
+}
+
+.text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:75%;
+font-family:'Poppins', sans-serif;
+font-size:18px;
+line-height:1.8;
+color:#f5f5f5;
+text-align:center;
+animation:fadeIn 2s ease;
+
+
+text-shadow:0 0 8px rgba(255,255,255,0.2);
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:fall 6s linear;
+text-shadow:0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{top:-10%}
+100%{top:110%}
+}
+
+.letter-star{
+position:absolute;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+box-shadow:
+0 0 8px white,
+0 0 16px white,
+0 0 24px rgba(255,255,255,0.8);
+animation:blink 2s infinite;
+transition:0.3s;
+}
+
+.next-btn{
+position:absolute;
+bottom:60px;
+left:50%;
+transform:translateX(-50%);
+padding:12px 30px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.5);
+color:white;
+font-size:14px;
+cursor:pointer;
+backdrop-filter:blur(10px);
+transition:0.3s;
+opacity:0;
+animation:fadeInBtn 3s ease forwards;
+animation-delay:3s;
+}
+
+.next-btn:hover{
+background:white;
+color:black;
+transform:translateX(-50%) scale(1.05);
+}
+
+@keyframes fadeInBtn{
+from{opacity:0; transform:translateX(-50%) translateY(20px)}
+to{opacity:1; transform:translateX(-50%) translateY(0)}
+}
+
+.sky-text{
+font-size:55px;
+letter-spacing:6px;
+animation:fadeIn 2s ease, pulse 3s infinite;
+}
+
+@keyframes pulse{
+0%{text-shadow:0 0 10px white}
+50%{text-shadow:0 0 30px white}
+100%{text-shadow:0 0 10px white}
+}
+
+#final-text{
+position:absolute;
+top:65%;
+left:50%;
+transform:translateX(-50%);
+font-size:22px;
+opacity:0;
+color:white;
+letter-spacing:2px;
+font-weight:300;
+transition:2s;
+text-shadow:0 0 10px white, 0 0 20px white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="page1" class="page">
+  <div class="intro">
+    <div class="glow-orb"></div>
+    <h1 class="title">Para você 💖</h1>
+    <p class="subtitle">toca aqui… algo especial te espera ✨</p>
+    <button class="magic-btn" onclick="openPage(event)">
+      <span>Abrir</span>
+    </button>
+  </div>
+</div>
+
+<div id="page2" class="page">
+
+  <div class="moon"></div>
+
+  <div class="text">
+  Nha mor, obrigada por não desistir da gente, mesmo quando está cansado, ocupado ou esgotado.
+  Eu sei que a saudade aperta e que às vezes o coração dói… mas quero que você saiba que você é o melhor presente que a vida me deu.
+
+  Te amar é como assistir ao pôr do sol mais lindo do universo, sentado à beira da praia, sentindo o vento calmo e o coração em paz.
+
+  É como acordar cedo em um domingo chuvoso e perceber que a única preocupação é dormir mais um pouquinho, com a sensação de que tudo está bem.
+
+  Te amar é como ouvir aquela música perfeita na hora certa,
+  é como assistir o seu time favorito ganhar a Champions League.
+
+  É como um abraço apertado quando a gente mais precisa.
+  É como uma noite cheia de estrelas quando o céu está limpo e a lua brilhando.
+
+  Te amar é como quando tudo parece dar certo ao mesmo tempo.
+  É como quando o coração fica leve sem a gente nem saber por quê.
+
+  É como quando a gente fecha os olhos e sente que está exatamente onde deveria estar.
+
+  Porque amar você é isso…
+  é paz, é saudade, é certeza, é abrigo.
+
+  Mesmo no meio do caos, existe um lugar onde tudo faz sentido.
+
+  E esse lugar… é você.
+
+  Obrigada por ficar, por ter paciência, por escolher a gente mesmo nos dias difíceis.
+
+  Eu amo você de um jeito que não cabe em palavras…
+  e amo ainda mais o que nós somos juntos. 
+
+  Eu amo amar você 🫵🏻❤️
+  </div>
+
+  <div class="next-btn" onclick="goToPage3()">
+    ✨ ver o céu ✨
+  </div>
+
+</div>
+
+<div id="page3" class="page" style="display:none;">
+
+  <div class="moon"></div>
+
+
+</div>
+
+<div id="final-text">
+e sempre vai ser você 💖
+</div>
+
+
+<audio id="music" src="love.mp3"></audio>
+
+<script>
+
+
+createStars()
+
+function openPage(e){
+
+
+if(navigator.vibrate) navigator.vibrate(200)
+
+
+let music = document.getElementById("music")
+music.play()
+
+
+for(let i=0;i<40;i++){
+let p=document.createElement("div")
+p.className="particle"
+p.style.left=e.clientX+"px"
+p.style.top=e.clientY+"px"
+p.style.setProperty('--x',(Math.random()*300-150)+"px")
+p.style.setProperty('--y',(Math.random()*300-150)+"px")
+document.body.appendChild(p)
+setTimeout(()=>p.remove(),1000)
+}
+
+// troca página
+setTimeout(()=>{
+document.getElementById("page1").style.display="none"
+document.getElementById("page2").style.display="block"
+
+createHearts()
+
+},300)
+}
+
+
+function goToPage3(){
+
+document.getElementById("page2").style.display="none"
+document.getElementById("page3").style.display="block"
+
+createSkyText()
+
+setTimeout(()=>{
+document.getElementById("final-text").style.opacity = 1
+},2500)
+
+}
+
+
+
+function createStars(){
+for(let i=0;i<180;i++){
+let s=document.createElement("div")
+s.className="star"
+s.style.left=Math.random()*100+"%"
+s.style.top=Math.random()*100+"%"
+document.body.appendChild(s)
+}
+}
+
+
+function createHearts(){
+setInterval(()=>{
+let h = document.createElement("div")
+h.className = "heart"
+h.innerHTML = "❤️"
+
+h.style.left = Math.random()*100 + "%"
+h.style.top = "-10%"
+
+document.body.appendChild(h)
+
+setTimeout(()=>h.remove(),6000)
+
+},800)
+}
+
+
+function createSkyText(){
+
+const letters = {
+E:["111","100","111","100","111"],
+U:["101","101","101","101","111"],
+T:["111","010","010","010","010"],
+A:["010","101","111","101","101"],
+M:["101","111","111","101","101"],
+O:["111","101","101","101","111"],
+L:["100","100","100","100","111"],
+N:["101","111","111","111","101"]
+}
+
+const text = "EU TE AMO LEONEL"
+const page = document.getElementById("page3")
+
+let startX = window.innerWidth / 2 - 420
+let startY = window.innerHeight / 2 - 60
+
+let x = startX
+
+for(let char of text){
+
+if(char === " "){
+x += 50
+continue
+}
+
+let pattern = letters[char]
+
+for(let row=0; row<pattern.length; row++){
+for(let col=0; col<pattern[row].length; col++){
+
+if(pattern[row][col] === "1"){
+
+let star = document.createElement("div")
+star.className = "letter-star"
+
+
+star.style.left = (x + col*12) + "px"
+star.style.top = (startY + row*12) + "px"
+
+
+star.style.opacity = 0
+setTimeout(()=>{
+star.style.opacity = 1
+}, Math.random()*1200)
+
+page.appendChild(star)
+
+}
+
+}
+}
+
+x += 40
+}
+
+
+setTimeout(()=>{
+document.querySelectorAll(".letter-star").forEach(s=>{
+s.style.transform = "scale(1.3)"
+})
+},1500)
+
+}
+
+</script>
+
+</body>
+</html>
